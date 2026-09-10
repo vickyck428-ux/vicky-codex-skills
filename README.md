@@ -37,7 +37,7 @@
 安装全部 Skill：
 
 ```bash
-git clone https://github.com/vc/vicky-codex-skills.git
+git clone https://github.com/vickyck428-ux/vicky-codex-skills.git
 cp -R vicky-codex-skills/skills/* "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 

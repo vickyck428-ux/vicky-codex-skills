@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 同行店铺反推"
+  short_description: "从相似卖家补货历史归纳可复制选品模式"
+  default_prompt: "请使用 $amazon-competitor-store-selection 分析同行店铺并反推候选。"

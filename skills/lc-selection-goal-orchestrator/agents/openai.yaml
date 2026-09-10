@@ -1,0 +1,4 @@
+interface:
+  display_name: "经营目标选品编排器"
+  short_description: "按年度目标、成熟漏斗和星期节奏统一编排选品与每日监督任务"
+  default_prompt: "使用 $lc-selection-goal-orchestrator 读取经营目标与真实漏斗，生成今天的选品方法、执行任务和一份汇总提醒。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "星河电商买家心声调研"
+  short_description: "电商买家心声调研、竞品评论分析与商品页面策略转译工作流"
+  default_prompt: "使用 $xinghe-ecommerce-buyer-voice 调研这款商品的真实买家心声，并转化为有证据的主图与详情页策略。"

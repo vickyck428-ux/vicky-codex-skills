@@ -1,0 +1,4 @@
+interface:
+  display_name: "老陈飞书选品同步"
+  short_description: "按任务批次回写选品结论、证据、图片与渠道建议"
+  default_prompt: "Use $lc-feishu-selection-sync to write this selection batch into the configured Feishu master Base and verify all linked records."

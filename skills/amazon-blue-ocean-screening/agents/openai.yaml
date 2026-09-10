@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 小众蓝海筛选"
+  short_description: "独立筛选含精铺女包在内的细分蓝海市场"
+  default_prompt: "请使用 $amazon-blue-ocean-screening 筛选这些 Amazon 细分市场。"

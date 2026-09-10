@@ -1,0 +1,4 @@
+interface:
+  display_name: "星河爆款短视频二创2.0"
+  short_description: "Analyze a viral reference video, adapt its voiceover rhythm, copy, stickers, sound effects, shot plan, and camera style, then generate a Seedance 2.0 Fast MP4."
+  default_prompt: "Use $xinghe-viral-video-remix-2-0 to analyze my reference short video, adapt its creative logic to my product, create a storyboard, and generate a capped 15-second video."

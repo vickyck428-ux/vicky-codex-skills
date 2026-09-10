@@ -1,0 +1,6 @@
+interface:
+  display_name: "Vicky 电商总分流"
+  short_description: "识别电商任务阶段，并只转交一个明确的主 Skill"
+  default_prompt: "Use $vicky-ecommerce-router to route this ecommerce request to exactly one primary skill."
+policy:
+  allow_implicit_invocation: true

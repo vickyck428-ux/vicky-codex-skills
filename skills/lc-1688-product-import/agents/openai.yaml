@@ -1,0 +1,4 @@
+interface:
+  display_name: "老陈1688商品导入"
+  short_description: "导入1688父商品、真实SKU关系并执行跨店重复铺货去重"
+  default_prompt: "Use $lc-1688-product-import to import a 1688 product or store export into the selection pipeline."

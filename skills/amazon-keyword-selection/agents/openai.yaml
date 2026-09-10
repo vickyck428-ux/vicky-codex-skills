@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 关键词数据选品"
+  short_description: "把关键词映射为产品并验证流量经济性"
+  default_prompt: "请使用 $amazon-keyword-selection 分析关键词数据并筛选具体产品。"

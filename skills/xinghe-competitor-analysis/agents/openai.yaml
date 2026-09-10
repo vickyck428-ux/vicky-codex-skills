@@ -1,0 +1,4 @@
+interface:
+  display_name: "星河竞品分析"
+  short_description: "品牌官网与国内外电商商品链接的全域竞品分析与转化洞察"
+  default_prompt: "使用 $xinghe-competitor-analysis 分析这些品牌官网或电商商品链接，并输出中文竞品报告。"

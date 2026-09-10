@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊库存清货"
+  short_description: "识别亚马逊积压、库龄与附加费风险并生成分阶段清货建议"
+  default_prompt: "Use $amazon-inventory-clearance to analyze my Amazon FBA excess and aged inventory and create a staged clearance workbook."

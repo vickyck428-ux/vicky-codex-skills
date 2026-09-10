@@ -1,0 +1,7 @@
+interface:
+  display_name: "星河跨境电商选品自动化"
+  short_description: "输入平台地区关键词，输出10个建议产品和对标竞品链接"
+  default_prompt: "Use $xinghe-crossborder-product-selection to output 10 recommended product directions with competitor links from a platform, region, and keyword."
+
+policy:
+  allow_implicit_invocation: true

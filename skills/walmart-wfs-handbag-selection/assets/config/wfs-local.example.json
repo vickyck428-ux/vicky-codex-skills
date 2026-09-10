@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "runner_root": "${WFS_RUNNER_ROOT}",
+  "incremental_config": "${WFS_RUNTIME_DIR}/config/wfs_handbag_incremental.json",
+  "selection_config": "${WFS_RUNTIME_DIR}/config/wfs_handbag_selection.json",
+  "keyword_master": "${WFS_RUNTIME_DIR}/inputs/wfs_handbag_keywords_master.csv",
+  "ledger_database": "${WFS_RUNTIME_DIR}/state/wfs_incremental.sqlite3",
+  "output_root": "${WFS_RUNTIME_DIR}/outputs",
+  "feishu_integrations_file": "${WFS_FEISHU_CONFIG}",
+  "lc_amazon_data_crawl_skill": "${WFS_CRAWL_SKILL_DIR}",
+  "markets": {
+    "US": {"postal_code": "10001"},
+    "CA": {"postal_code": "M5V 2T6"}
+  },
+  "schedule_enabled": false,
+  "operations_paused": true,
+  "no_marketplace_mutations": true
+}

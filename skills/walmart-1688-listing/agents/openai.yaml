@@ -1,0 +1,4 @@
+interface:
+  display_name: "1688 转 Walmart 上架表"
+  short_description: "解析1688商品并生成、诊断或修正沃尔玛官方上传表格"
+  default_prompt: "Use $walmart-1688-listing to generate or correct a validated Walmart upload workbook from 1688 product data."

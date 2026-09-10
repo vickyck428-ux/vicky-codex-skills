@@ -1,0 +1,4 @@
+sku,product_name,selected,current_stock,inbound_on_way,daily_sales,lead_time_days,safety_stock_days,target_days_override,carton_qty,min_ship_qty,product_image
+SKU-001,Blue Lunch Box,1,120,30,8,25,15,,24,48,/path/to/images/sku-001.jpg
+SKU-002,Kids Water Bottle,1,45,0,5,20,10,,12,24,/path/to/images/sku-002.jpg
+SKU-003,Travel Storage Bag,0,300,50,3,30,20,,50,100,/path/to/images/sku-003.jpg

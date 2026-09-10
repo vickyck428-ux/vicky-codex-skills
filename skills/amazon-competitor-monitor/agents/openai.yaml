@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 竞品监控"
+  short_description: "用原图搜款、截图分级并监控竞品价格与履约变化"
+  default_prompt: "使用 $amazon-competitor-monitor 通过 Amazon StyleSnap 更新同款映射，保留 A/B 截图和用户 B→A 决定，只输出只读监控结果。"

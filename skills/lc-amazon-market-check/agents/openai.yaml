@@ -1,0 +1,4 @@
+interface:
+  display_name: "老陈Amazon市场检查"
+  short_description: "检查Amazon同款、履约、销量、排名与渠道数据完整性"
+  default_prompt: "Use $lc-amazon-market-check to verify Amazon same-product matches and FBA or FBM data."

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Amazon 选品方法"
+  short_description: "合并多期课程方法，执行 Amazon 类目、关键词、ABA、多平台和社媒选品分析"
+  default_prompt: "请使用 $amazon-product-selection，按课程整合后的流程分析我的选品数据并给出结论。"
+policy:
+  allow_implicit_invocation: false

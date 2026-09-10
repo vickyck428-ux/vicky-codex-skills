@@ -1,0 +1,97 @@
+{
+  "skill_name": "xinghe-competitor-analysis",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "分析这个京东商品链接：https://item.jd.com/10090376031794.html，给我完整的选品与转化报告。",
+      "expected_output": "识别为商品页和京东平台；记录商品ID与当前SKU；提取可见标题、品牌、类目、价格类型、SKU矩阵、主图、促销、榜单、卖家和履约信号；评论不可用时明确标注，不得编造；输出中文完整报告并保存原始页面和图片。",
+      "assertions": [
+        "Routes to product-page mode",
+        "Separates price types and current SKU",
+        "Analyzes images and SKU consistency",
+        "Marks unavailable review data",
+        "Saves dated raw data"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "分析这个天猫商品链接：https://detail.tmall.com/item.htm?id=855256532721&skuId=5824716786144",
+      "expected_output": "优先使用内置浏览器。遇到登录墙时请求用户扫码或手动登录并等待用户确认，不绕过验证；登录后继续采集。若仍受限，基于公开元数据和图片输出受限报告，列出缺失字段以及所需截图。",
+      "assertions": [
+        "Uses the in-app browser first",
+        "Requests user handoff for login",
+        "Does not bypass CAPTCHA or authentication",
+        "Produces a limited report when blocked",
+        "Lists missing evidence"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "分析这个Amazon链接并用中文输出：https://www.amazon.com/dp/B0EXAMPLE1?tag=affiliate-20，重点看变体、价格和A+。",
+      "expected_output": "识别Amazon站点和ASIN，分离联盟tag；记录国家、币种、配送地区、父子变体、Buy Box卖家、FBA/FBM、一次性购买/订阅价、评分、五点和A+。无法确认的数据标记未获取。",
+      "assertions": [
+        "Extracts ASIN and affiliate tracking",
+        "Records market, currency and fulfillment",
+        "Separates subscription and one-time price",
+        "Analyzes bullets and A+",
+        "Does not invent unavailable fields"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "分析这个独立站商品：https://example-store.com/products/travel-mug?variant=12345",
+      "expected_output": "识别为Shopify或DTC通用商品页，保留variant；从结构化数据、页面文本和图片提取商品、变体、价格、订阅、评论、运输和退货信息，并按商品模板输出。",
+      "assertions": [
+        "Routes to Shopify or generic DTC product mode",
+        "Preserves variant parameter",
+        "Uses structured data and visible page evidence",
+        "Covers shipping and returns"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "对比这6个来自京东、天猫、Amazon、Shopee、Lazada和Shopify的同类商品链接。",
+      "expected_output": "先做统一快速采集，再选择差异最大的3个深挖；统一当前SKU、币种说明和每100g/100ml/件价格；为每个事实保留来源与时间；生成单品报告和跨平台_summary.md。",
+      "assertions": [
+        "Uses quick comparison for 4-10 links",
+        "Normalizes unit prices only when comparable",
+        "Deep-dives three differentiated listings",
+        "Creates individual reports and summary",
+        "Records data completeness"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "分析竞争品牌官网 https://competitor.example.com，重点看定位、产品、定价和内容策略。",
+      "expected_output": "识别为品牌官网模式；抓取首页、产品和定价页；Firecrawl/DataForSEO仅在可用时增强，缺失时不阻塞；输出定位、产品、价格、客户证据、内容/SEO信号和竞争含义。",
+      "assertions": [
+        "Routes to brand-website mode",
+        "Does not require Firecrawl or DataForSEO",
+        "Covers positioning, products, pricing and content",
+        "Labels missing SEO metrics"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "这个拼多多商品页面打不开，但我附了商品顶部、SKU和详情长图，请分析。",
+      "expected_output": "使用用户提供的截图作为证据，解析商品、价格、SKU和视觉；将销量、评论等未提供字段标为未获取；输出受限报告，不因无法访问页面而停止，也不伪造数据。",
+      "assertions": [
+        "Uses screenshots as fallback evidence",
+        "Marks unavailable dynamic metrics",
+        "Analyzes visual sequence",
+        "Produces a limited report"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "这里有18个跨境商品链接，全部做竞品分析。",
+      "expected_output": "先按品类、价格带、目标人群和相关性筛选5个并说明规则，不直接对18个做同等深度；对5个快速对比，再按差异和价值选择重点商品深入。",
+      "assertions": [
+        "Shortlists five from more than ten links",
+        "Explains selection criteria",
+        "Avoids equal-depth analysis of all links",
+        "Maintains comparable fields"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Amazon 财务分析（兼容入口）"
+  short_description: "历史调用名；显式调用后转交正式财务分析 Skill"
+  default_prompt: "Use $amazon-finance-profit-analysis to forward this request to $financial-analysis."
+policy:
+  allow_implicit_invocation: false

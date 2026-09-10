@@ -1,0 +1,4 @@
+interface:
+  display_name: "FBM 共享池选品"
+  short_description: "用同一批1688女包候选分流亚马逊与沃尔玛FBM测试"
+  default_prompt: "使用 $lc-fbm-shared-pool-selection 处理今天的1688共享候选池，完成去重、门禁和亚沃市场分流，只生成审核与上新任务。"

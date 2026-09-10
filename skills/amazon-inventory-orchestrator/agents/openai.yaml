@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 库存决策编排"
+  short_description: "统一编排亚马逊清货、补货与只读调价决策，仅生成安全预览"
+  default_prompt: "Use $amazon-inventory-orchestrator to run a read-only Amazon inventory decision workflow."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon ABA 新词选品"
+  short_description: "分析真新词、增长原因、拥挤速度和入仓窗口"
+  default_prompt: "请使用 $amazon-aba-selection 分析 ABA 历史并寻找早期产品机会。"

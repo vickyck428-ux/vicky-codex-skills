@@ -1,0 +1,4 @@
+interface:
+  display_name: "WFS 发货表交接"
+  short_description: "把沃FBM首单和M7候选转成审批、分箱与发货工作簿"
+  default_prompt: "Use $lc-walmart-wfs-shipping-manifest to turn approved WFS candidates into a store-separated shipping workbook."

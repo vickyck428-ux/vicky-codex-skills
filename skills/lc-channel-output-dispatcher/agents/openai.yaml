@@ -1,0 +1,4 @@
+interface:
+  display_name: "老陈渠道输出分流"
+  short_description: "自动汇总选品结论并分流Amazon与Walmart表格批次"
+  default_prompt: "Use $lc-channel-output-dispatcher to automatically group verified selection results into Amazon and Walmart output batches."

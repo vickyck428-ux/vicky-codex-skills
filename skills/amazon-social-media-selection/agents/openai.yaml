@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 社媒选品"
+  short_description: "用独立创作者、购买意图和时间线发现趋势"
+  default_prompt: "请使用 $amazon-social-media-selection 分析社媒证据中的 Amazon 机会。"

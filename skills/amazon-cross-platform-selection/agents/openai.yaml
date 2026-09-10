@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 多平台选品"
+  short_description: "验证同市场需求与 Amazon 履约供给空缺"
+  default_prompt: "请使用 $amazon-cross-platform-selection 从跨平台信号中寻找 Amazon 产品机会。"

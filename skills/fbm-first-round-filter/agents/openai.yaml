@@ -1,0 +1,4 @@
+interface:
+  display_name: "FBM 第一轮筛选"
+  short_description: "按首轮 FBM 条件筛选 Amazon 商品 Excel"
+  default_prompt: "Use $fbm-first-round-filter 从商品 Excel 中筛选评论少、非 Amazon、中国卖家、FBM、有类目排名且上架时间较短的商品。"

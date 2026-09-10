@@ -1,0 +1,4 @@
+interface:
+  display_name: "星河主图宣传片2.0"
+  short_description: "Generate domestic and cross-border ecommerce product promo videos with storyboard control."
+  default_prompt: "Use $xinghe-main-video-promo-2-0 to create one stable 15-second ecommerce product promotional video from my product photos. Support domestic and cross-border platforms, build a written director storyboard first, use Xinghe storyboard image generation when needed, preserve product identity, and include premium camera movement, music/sound design, and platform-appropriate voiceover."

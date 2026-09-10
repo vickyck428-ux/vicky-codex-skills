@@ -1,0 +1,65 @@
+{
+  "project_id": "wfs-handbag-double-pool",
+  "keyword_master_file": "__WFS_RUNTIME_DIR__/inputs/wfs_handbag_keywords_master.csv",
+  "keyword_metric_files": [],
+  "amazon_records_file": "__WFS_RUNTIME_DIR__/outputs/amazon-records/records.jsonl",
+  "walmart_checks_file": "__WFS_RUNTIME_DIR__/inputs/wfs_handbag_walmart_checks.csv",
+  "output_dir": "__WFS_RUNTIME_DIR__/outputs/wfs-handbag-selection",
+  "formal_keyword_min": 60,
+  "formal_keyword_max": 80,
+  "formal_keyword_min_per_pool": 30,
+  "pilot_keyword_count": 10,
+  "pilot_keyword_count_per_pool": 5,
+  "candidate_target": 100,
+  "first_validation_count": 50,
+  "preliminary_advice_count": 25,
+  "allocation_adjustment_min_checked": 50,
+  "initial_pool_share": {"MAINSTREAM": 0.5, "STYLE": 0.5},
+  "batch_check_size": 25,
+  "core_thresholds": {
+    "amazon_price_min": 25,
+    "amazon_sales_30d_min": 150,
+    "amazon_sales_30d_max": 600
+  },
+  "keyword_validation": {
+    "required_numeric_fields": [
+      "search_volume_30d",
+      "trend_90d_pct",
+      "cpc_usd",
+      "conversion_rate",
+      "purchase_count_30d",
+      "spr",
+      "title_density",
+      "top3_purchase_share",
+      "avg_price",
+      "avg_review_count"
+    ],
+    "us_expected_acos_warning": 0.4
+  },
+  "dynamic_allocation": {
+    "opportunity_rate_multiplier": 1.5,
+    "winner_min_valid_samples": 5,
+    "winner_next_batch_share": 0.65,
+    "low_rate_checked_min": 30,
+    "low_opportunity_rate": 0.05,
+    "observation_floor_share": 0.2
+  },
+  "walmart_weak_supply_max_exact_matches": 3,
+  "walmart_markets": ["US", "CA"],
+  "benchmark_keywords": [
+    "women's shoulder handbag",
+    "women's crossbody purse",
+    "women's hobo handbag",
+    "women's tote handbag",
+    "women's satchel handbag",
+    "women's everyday purse",
+    "leather shoulder bag for women",
+    "women's large tote handbag"
+  ],
+  "benchmark_pages_per_keyword": 3,
+  "benchmark_candidate_share_max": 0.2,
+  "discovery_resource_share_target": 0.8,
+  "default_formal_page_depth": 5,
+  "page_segments": [[1, 3], [4, 6], [7, 10]],
+  "no_marketplace_mutations": true
+}

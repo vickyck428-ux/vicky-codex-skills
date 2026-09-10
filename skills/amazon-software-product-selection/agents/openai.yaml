@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 软件商品选品"
+  short_description: "从商品库筛选 ASIN 并排除履约与变体假信号"
+  default_prompt: "请使用 $amazon-software-product-selection 分析商品库并生成可复核候选。"

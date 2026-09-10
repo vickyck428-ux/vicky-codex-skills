@@ -1,0 +1,96 @@
+{
+  "version": "2026-08-13",
+  "purpose": "Amazon US精铺女包候选结构标准化；别名仅用于初步识别，最终由人复核",
+  "signature_order": ["bag_shape", "material", "function", "scene", "style", "audience"],
+  "dimensions": {
+    "bag_shape": {
+      "hobo": ["hobo", "slouchy", "crescent", "腋下包", "月牙包"],
+      "shoulder": ["shoulder bag", "underarm bag", "单肩包", "肩背包"],
+      "crossbody": ["crossbody", "sling bag", "斜挎包"],
+      "tote": ["tote", "shopper", "shopping bag", "托特包", "购物袋"],
+      "satchel": ["satchel", "top handle", "手提包"],
+      "bowler": ["bowler", "barrel bag", "波士顿包", "圆筒包"],
+      "bucket": ["bucket bag", "水桶包"],
+      "clutch": ["clutch", "evening bag", "晚宴包", "手拿包"],
+      "wristlet": ["wristlet", "手腕包"],
+      "baguette": ["baguette bag", "法棍包"],
+      "camera": ["camera bag", "相机包"],
+      "backpack": ["backpack", "daypack", "双肩包", "背包"],
+      "belt": ["belt bag", "waist bag", "fanny pack", "腰包"],
+      "ita": ["ita bag", "pin display bag", "clear display bag", "痛包", "展示包"],
+      "novelty": ["novelty bag", "shaped bag", "造型包", "异形包"]
+    },
+    "material": {
+      "nylon": ["nylon", "尼龙"],
+      "canvas": ["canvas", "帆布"],
+      "denim": ["denim", "jean", "牛仔"],
+      "fabric": ["fabric", "cloth", "textile", "布艺", "织物"],
+      "pu": ["pu", "pu leather", "vegan leather", "faux leather", "synthetic leather", "仿皮", "人造革"],
+      "genuine_leather": ["genuine leather", "cowhide", "suede", "真皮", "牛皮", "麂皮"],
+      "woven": ["woven", "knitted", "crochet", "编织", "针织", "钩针"],
+      "straw": ["straw", "raffia", "rattan", "草编", "拉菲草", "藤编"],
+      "corduroy": ["corduroy", "灯芯绒"],
+      "velvet": ["velvet", "丝绒", "天鹅绒"],
+      "clear": ["clear pvc", "transparent pvc", "transparent bag", "透明pvc", "透明包"],
+      "metal": ["metal mesh", "aluminum", "金属网", "铝制"]
+    },
+    "function": {
+      "zipper": ["zipper", "zip closure", "拉链"],
+      "magnetic_closure": ["magnetic closure", "magnetic snap", "磁吸扣"],
+      "drawstring": ["drawstring", "抽绳"],
+      "large_capacity": ["large capacity", "roomy", "大容量"],
+      "mini": ["mini bag", "small purse", "迷你包", "小包"],
+      "multi_pocket": ["multi pocket", "multiple pockets", "多口袋", "多分层"],
+      "side_pocket": ["side pocket", "side pockets", "侧袋"],
+      "removable_insert": ["removable insert", "insert board", "可拆插板", "可拆内胆"],
+      "adjustable_strap": ["adjustable strap", "可调肩带"],
+      "detachable_strap": ["detachable strap", "removable strap", "可拆肩带"],
+      "convertible": ["convertible", "multi way", "多背法", "可转换"],
+      "display_window": ["display window", "clear pocket", "展示窗", "透明展示"],
+      "water_resistant": ["water resistant", "waterproof", "防泼水", "防水"],
+      "anti_theft": ["anti theft", "anti-theft", "防盗"],
+      "laptop_fit": ["laptop", "fits 13 inch", "fits 15 inch", "电脑隔层", "可放电脑"],
+      "phone_pocket": ["phone pocket", "手机袋"],
+      "expandable": ["expandable", "扩容", "可扩展"]
+    },
+    "scene": {
+      "everyday": ["everyday", "daily", "casual", "日常"],
+      "commute": ["work bag", "commute", "office", "通勤", "上班"],
+      "school": ["school", "campus", "college", "上学", "校园"],
+      "convention": ["convention", "anime expo", "comic con", "漫展"],
+      "concert": ["concert", "stadium", "festival", "演唱会", "音乐节"],
+      "travel": ["travel", "vacation", "weekend", "旅行", "度假"],
+      "beach": ["beach", "pool", "海滩", "泳池"],
+      "evening": ["evening", "party", "wedding", "prom", "晚宴", "派对", "婚礼"],
+      "sports": ["gym", "running", "hiking", "运动", "健身", "徒步"]
+    },
+    "style": {
+      "y2k": ["y2k", "gyaru", "whimsygoth", "千禧"],
+      "cottagecore": ["cottagecore", "田园"],
+      "coquette": ["coquette", "bow detail", "lace trim", "蝴蝶结", "蕾丝"],
+      "gothic": ["gothic", "goth", "哥特"],
+      "punk": ["punk", "rock", "铆钉", "朋克"],
+      "boho": ["boho", "bohemian", "hippie", "波西米亚"],
+      "minimal": ["minimal", "plain", "solid color", "简约", "纯色"],
+      "vintage": ["vintage", "retro", "复古"],
+      "western": ["western", "cowboy", "cow print", "西部", "牛仔风"],
+      "preppy": ["preppy", "学院风"],
+      "sporty": ["sporty", "athleisure", "运动风"],
+      "novelty": ["novelty", "quirky", "whimsical", "创意", "趣味"]
+    },
+    "audience": {
+      "women": ["women", "woman", "ladies", "女士", "女性"],
+      "teen": ["teen", "teenager", "少女", "青少年"],
+      "girls": ["girls", "kids", "女童", "儿童"],
+      "anime_fans": ["anime fans", "pin collector", "动漫爱好者", "徽章收藏者"],
+      "commuters": ["commuter", "office worker", "通勤人群", "上班族"],
+      "travelers": ["traveler", "tourist", "旅行者"]
+    }
+  },
+  "manual_review_flags": [
+    "标题出现品牌、角色、明星、球队、影视或游戏名时必须进入IP复核",
+    "novelty或clear材料命中时复核外观专利、刮花、开裂和运输破损",
+    "girls或kids命中时复核年龄定位、警示语和小部件风险",
+    "同一标题可能命中多个包型；多用包保留多值，不强制归一为单一包型"
+  ]
+}

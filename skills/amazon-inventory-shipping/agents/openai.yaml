@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊补货与发货规划"
+  short_description: "按补货后销量、FBA精确同款竞品、库存与交期生成补货计划"
+  default_prompt: "Use $amazon-inventory-shipping to calculate an auditable Amazon replenishment plan, verify actual shipped units after the last confirmed FBA receipt, and review fresh exact-match FBA competitors before any 1688 cart preview."

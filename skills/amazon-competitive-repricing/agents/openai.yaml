@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 清货与调价"
+  short_description: "一个入口生成清货、竞品核验和调价综合表"
+  default_prompt: "Use $amazon-competitive-repricing to run the Amazon US clearance-and-repricing workflow, keep clearance and pricing as separate internal modules, and return one read-only workbook with own-store Coupon permanently disabled."

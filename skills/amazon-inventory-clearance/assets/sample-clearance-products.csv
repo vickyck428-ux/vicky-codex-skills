@@ -1,0 +1,5 @@
+seller_sku,asin,product_title,product_group,is_womens_bag,units_7d,units_15d,units_30d,units_60d,units_90d,units_prev_15d,revenue_30d,ad_cost_30d,supply_instock,supply_reserved,supply_inbound,supply_total,oldest_age_days,next_snapshot_aged_units,estimated_aged_surcharge,stranded_units,unfulfillable_units,next_fee_snapshot_date,unit_contribution,external_resale_value,removal_fee_per_unit,inventory_report_present,age_report_present,cost_data_present,api_supply_instock,api_supply_total,api_inventory_suspect,api_inventory_mismatch,inventory_reconciliation_issue
+BAG-CLEAR-01,B0TEST0001,Women Tote Bag,女包,是,0,0,0,0,2,0,0,0,40,0,0,40,190,40,18,0,0,2026-08-15,-1,3,1,是,是,是,40,40,否,否,
+BAG-OVER-02,B0TEST0002,Women Shoulder Bag,女包,是,2,4,9,20,34,5,180,20,80,5,0,85,120,0,0,0,0,2026-08-15,,,,是,是,否,82,87,否,是,API库存与FBA库存报告不一致，仅采用FBA报告
+BAG-REPLENISH-03,B0TEST0003,Women Crossbody Bag,女包,是,18,35,62,120,170,27,1240,110,12,2,5,19,45,0,0,0,0,2026-08-15,4,6,1,是,是,是,12,19,否,否,
+BAG-MANUAL-04,B0TEST0004,Women Hobo Bag,女包,是,0,0,0,0,0,0,0,0,,,,,,,,,,2026-08-15,,,,否,否,否,1000,1000,是,否,API有库存但FBA库存报告缺行，未采用；API库存含999/1000疑似占位值，已隔离

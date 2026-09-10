@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon FBM 备份"
+  short_description: "预测 FBA 断货并生成只读 FBM 备份提醒"
+  default_prompt: "使用 $amazon-fbm-backup 评估 FBA 断货风险，只生成备份提醒；不得输出定价、数量或 Offer 操作。"

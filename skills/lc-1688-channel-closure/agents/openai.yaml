@@ -1,0 +1,4 @@
+interface:
+  display_name: "1688 多渠道闭环"
+  short_description: "管理 Amazon US/UK/DE 与 Walmart 铺货闭环"
+  default_prompt: "使用 $lc-1688-channel-closure 核对当前1688多渠道闭环状态，根据实际SQLite、飞书读回和平台验收证据给出下一步。"

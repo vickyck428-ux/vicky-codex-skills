@@ -1,0 +1,4 @@
+seller_sku,asin,product_title,product_group,is_womens_bag,clearance_status,units_7d,units_15d,units_30d,units_90d,units_prev_15d,seasonal_product,yoy_growth_ratio,b1_override,b2_override,promotion_overlap,supply_instock,supply_reserved,supply_inbound,inbound_ready_date,supply_total,unit_contribution,long_tail_approved,procurement_days,prep_days,review_cycle_days,safety_factor,express_days,air_days,sea_days,express_cost_per_unit,air_cost_per_unit,sea_cost_per_unit,moq,carton_qty
+BAG-COURSE-01,B0TEST1001,Course Formula Bag,女包,是,健康维持,70,150,300,900,136,否,,1.1,1.2,否,200,80,200,2026-08-01,480,4,否,7,2,7,1.2,5,14,35,8,4,1.5,1,1
+BAG-OVER-02,B0TEST1002,Overstock Bag,女包,是,主动清货,1,2,5,12,6,否,,,,否,100,0,0,,100,1,否,7,2,7,1.2,5,14,35,8,4,1.5,10,5
+BAG-BRIDGE-03,B0TEST1003,Bridge Shipping Bag,女包,是,健康维持,70,150,300,900,136,否,,1.1,1.2,否,77,0,0,,77,5,否,0,0,23.0833333333,1,3,14,24,8,4,1.5,1,1

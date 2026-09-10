@@ -1,0 +1,4 @@
+interface:
+  display_name: "FBM成交转仓与补货中心"
+  short_description: "把Amazon与Walmart订单转成彩色WFS/FBA动作与补货提醒"
+  default_prompt: "使用 $lc-fbm-warehouse-action-center 读取最新订单报表并更新飞书发货需求总表。"

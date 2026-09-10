@@ -1,0 +1,4 @@
+interface:
+  display_name: "图床上传"
+  short_description: "通过 SSH 上传产品图片并返回公网图床链接"
+  default_prompt: "使用 $image-host-upload 将这些产品图片上传到图床并返回链接。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Walmart WFS 女包选品"
+  short_description: "每日30款FBM保存与最多4款WFS分流"
+  default_prompt: "使用 $walmart-wfs-handbag-selection 完成每日30款女包选品，全部保存为FBM候选并最多挑4款WFS。"

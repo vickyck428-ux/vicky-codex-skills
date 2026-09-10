@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 精铺女包选品总控"
+  short_description: "编排多方法发现、六道门槛与小批测品决策"
+  default_prompt: "请使用 $amazon-handbag-selection-orchestrator 为 Amazon 美国站执行一次精铺女包选品。"

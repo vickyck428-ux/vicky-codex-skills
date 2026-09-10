@@ -1,0 +1,6 @@
+interface:
+  display_name: "1688采购发货"
+  short_description: "从1688订单截图生成商品明细、图片和飞书采购发货台账"
+  default_prompt: "Use $lc-1688-purchase-shipping to 识别这批1688订单截图，逐规格生成预览，并在确认后写入飞书采购发货总表。"
+policy:
+  allow_implicit_invocation: true

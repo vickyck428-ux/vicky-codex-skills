@@ -1,0 +1,6 @@
+SKU,ASIN,供应商名称,1688链接,价格,起订量,同款确认,店铺状态,厂家状态,候选备注
+TEST-NEW-001,B0TEST0001,异常低价店,https://detail.1688.com/offer/1001.html,1.00,2,true,正常,未确认,疑似引流价
+TEST-NEW-001,B0TEST0001,正常厂家A,https://detail.1688.com/offer/1002.html,10.00,2,true,正常,已确认,规格一致
+TEST-NEW-001,B0TEST0001,正常厂家B,https://detail.1688.com/offer/1003.html,11.00,5,true,正常,已确认,规格一致
+TEST-GOOD-002,B0TEST0002,低价供应商,https://detail.1688.com/offer/2001.html,8.50,2,true,正常,未确认,规格一致但厂家身份未知
+TEST-GOOD-002,B0TEST0002,错误规格店,https://detail.1688.com/offer/2002.html,7.00,2,false,正常,已确认,套装数量不同

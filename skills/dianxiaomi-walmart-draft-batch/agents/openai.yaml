@@ -1,0 +1,7 @@
+interface:
+  display_name: "店小秘 Walmart 草稿箱批处理"
+  short_description: "按最新版固定规则批量处理店小秘 Walmart 草稿商品"
+  default_prompt: "Use $dianxiaomi-walmart-draft-batch to process 店小秘 Walmart draft products with the fixed translation, SKU, pricing, image, and save workflow."
+
+policy:
+  allow_implicit_invocation: true

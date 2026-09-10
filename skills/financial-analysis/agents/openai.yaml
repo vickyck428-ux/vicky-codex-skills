@@ -1,0 +1,4 @@
+interface:
+  display_name: "财务分析 skill"
+  short_description: "亚马逊结算、利润、退货与 SKU 风险分析看板"
+  default_prompt: "Use $financial-analysis to turn an Amazon settlement report and SKU cost sheet into employee-facing Excel and HTML profit analysis."

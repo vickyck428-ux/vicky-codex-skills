@@ -1,0 +1,4 @@
+interface:
+  display_name: "老陈Google风险初筛"
+  short_description: "Google Lens同款搜索、网站复核与高风险硬停止"
+  default_prompt: "Use $lc-google-risk-screen to screen imported products with Google Lens and preserve evidence."

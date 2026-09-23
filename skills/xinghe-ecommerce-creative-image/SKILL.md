@@ -1,9 +1,9 @@
 ---
 name: xinghe-ecommerce-creative-image
-description: Generate one CTR-first ecommerce ad or marketing image with concise, readable copy. Use for 单张高点击创意图、信息流广告图或带文案营销图；do not use for plain white-background/product edits, reference-image replacement, detail pages, or a complete Amazon visual suite.
+description: CTR-first ecommerce creative image generation skill for product photos. Use when the user asks for 车图制作, 电商创意图, 商品主图, 高点击主图, 信息流广告图, 带货图, 小红书商品图, 抖音商品图, 拼多多主图, 淘宝主图, Amazon product ad image, or gives product images with optional selling points, marketing copy, platform requirements, or competitor references. Default to directly generating one image with the deployment image helper via XINGHE_IMAGE_GENERATOR or %LOCALAPPDATA%\ApiCodexOneClick\tools\generate-image.ps1 unless the user asks only for prompts or strategy. Use built-in image_gen only as the final fallback if the helper is unavailable or fails. Prioritize click-through rate, product fidelity, concise high-readability copy, competitor click-logic analysis, platform adaptation, and compliance.
 ---
 
-# 星河创意图3.0
+# 星河创意图4.0
 
 把产品图、卖点文案和竞品参考图转成点击率优先的电商创意图。这里的“车图”指广告创意图，不是汽车图。
 
@@ -12,7 +12,7 @@ description: Generate one CTR-first ecommerce ad or marketing image with concise
 - 点击率优先：所有标题、构图、场景、光影、标签和对比都服务于停留与点击。
 - 默认直接出图：只要用户提供产品图并要求做图，立即使用部署工具 helper 生成，不要先输出 prompt 询问是否出图。
 - 生图工具优先级：优先使用 `$env:XINGHE_IMAGE_GENERATOR`，其次使用 `%LOCALAPPDATA%\ApiCodexOneClick\tools\generate-image.ps1`，最后才使用内置 `image_gen` 兜底。
-- 默认数量：用户未指定数量时生成 `1` 张；指定数量时严格按数量生成，每张图单独调用一次生图接口。
+- 默认数量：用户未指定数量时生成 `1` 张；指定数量时严格按数量生成，每张图单独调用一次生图接口；多张图按错峰并发规则提交，间隔 3 秒，不等上一张落盘再提交下一张。
 - 默认比例：`1:1` 方图，除非用户指定平台比例或尺寸。
 - 产品保真：保持产品外观、颜色、包装、logo、结构、材质、SKU 和关键细节，不为了创意改坏产品。
 - 合规优先：不虚构销量、评价、认证、检测、授权、功效、医疗/保健效果或绝对化承诺。
@@ -78,12 +78,14 @@ $env:XINGHE_IMAGE_GENERATOR
 
 接口规则：
 
-- 有产品图、参考图、竞品图等参考图片时，调用 helper 并通过 `-ReferenceImage` 传入所有参考图片；helper 会路由到 `https://xinghe.xin/v1/images/edits`。
+- 有产品图、参考图、竞品图等参考图片时，调用 helper，并通过一个分号分隔字符串传给 `-ReferenceImage`；helper 会路由到 `https://xinghe.xin/v1/images/edits`。
 - 没有参考图片、纯文本起图时，不传 `-ReferenceImage`；helper 会路由到 `https://xinghe.xin/v1/images/generations`。
 - 模型固定使用部署工具配置的 `gpt-image-2`。
 - API Key 使用部署工具安装时校验并写入的 key，不向用户询问，不在回复中输出、保存或复述真实 key。
 - 完整生图提示词必须先写入 UTF-8 prompt 文件，再用 `-PromptFile` 调用；不要把长提示词直接拼到命令行。
+- 多张参考图必须先合并成一个分号分隔字符串传给 `-ReferenceImage`；不要把 PowerShell 数组或多个逗号分隔路径直接传给 `-ReferenceImage`，避免后续参数被错绑成 `TimeoutSec` 等参数。
 - 每张图单独调用一次 helper，保存到本地输出目录。
+- 当需要生成多张图时，使用错峰并发提交：第 1 张 helper 调用提交后等待 3 秒，不等图片落盘，立即提交第 2 张；依次类推。所有任务提交后再统一等待完成并检查输出。单张图保持普通同步调用。
 - helper 会输出本地绝对路径和 Markdown 图片预览；最终回复必须使用本地绝对路径展示图片。
 
 PowerShell 示例：
@@ -92,14 +94,59 @@ PowerShell 示例：
 $helper = $env:XINGHE_IMAGE_GENERATOR
 if (-not $helper) { $helper = Join-Path $env:LOCALAPPDATA 'ApiCodexOneClick\tools\generate-image.ps1' }
 $promptFile = "<absolute prompt file path>"
+$referenceImages = @("C:\path\to\product.png", "C:\path\to\reference.png")
+$referenceImageArg = ($referenceImages -join ';')
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File $helper `
   -PromptFile $promptFile `
-  -ReferenceImage "C:\path\to\product.png", "C:\path\to\reference.png" `
+  -ReferenceImage $referenceImageArg `
   -OutputDir "<absolute output directory>" `
   -Size "1024x1024" `
   -FileName "image-01.png"
 ```
 
 无参考图时删除 `-ReferenceImage ...` 参数。
+
+多张图并发提交示例：
+
+```powershell
+$serialFallback = $false
+$jobs = @()
+try {
+  foreach ($task in $imageTasks) {
+    $jobs += Start-Job -ScriptBlock {
+      param($helper, $promptFile, $referenceImageArg, $outputDir, $size, $fileName)
+      if ($referenceImageArg) {
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $helper -PromptFile $promptFile -ReferenceImage $referenceImageArg -OutputDir $outputDir -Size $size -FileName $fileName
+      } else {
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $helper -PromptFile $promptFile -OutputDir $outputDir -Size $size -FileName $fileName
+      }
+    } -ArgumentList $helper, $task.PromptFile, $task.ReferenceImageArg, $task.OutputDir, $task.Size, $task.FileName
+    Start-Sleep -Seconds 3
+  }
+  $jobs | Wait-Job | Out-Null
+  $results = $jobs | Receive-Job -ErrorAction Stop
+} catch {
+  $serialFallback = $true
+} finally {
+  if ($jobs.Count -gt 0) {
+    if ($serialFallback) { $jobs | Stop-Job -ErrorAction SilentlyContinue }
+    $jobs | Remove-Job -Force -ErrorAction SilentlyContinue
+  }
+}
+if ($serialFallback) {
+  $results = @()
+  foreach ($task in $imageTasks) {
+    $outPath = Join-Path $task.OutputDir $task.FileName
+    if (Test-Path -LiteralPath $outPath) { continue }
+    if ($task.ReferenceImageArg) {
+      $results += & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $helper -PromptFile $task.PromptFile -ReferenceImage $task.ReferenceImageArg -OutputDir $task.OutputDir -Size $task.Size -FileName $task.FileName
+    } else {
+      $results += & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $helper -PromptFile $task.PromptFile -OutputDir $task.OutputDir -Size $task.Size -FileName $task.FileName
+    }
+  }
+}
+```
+
+并发提交时，每张图必须使用独立的 prompt 文件、输出文件名和输出路径记录；不要在提交下一张前等待上一张落盘。若并发调用失败或接口限流，再降级为逐张串行重试。
 
 如果 helper 不存在或执行失败，不要改用 Pillow、matplotlib、SVG、canvas 或占位图。只有当前会话明确暴露可用的内置 `image_gen` 时才使用它作为最后兜底；否则报告 helper 缺失或执行失败。

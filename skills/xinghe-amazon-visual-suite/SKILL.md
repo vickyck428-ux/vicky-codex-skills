@@ -1,16 +1,16 @@
 ---
 name: xinghe-amazon-visual-suite
-description: "Create one complete Amazon visual suite: 1 main image, 6 secondary images, 7 desktop A+ modules, and 7 mobile A+ modules. Use only for a full Amazon 主图+副图+A+套系；do not use for one main image, reference-image remix, a PDP/A+ module subset, or a single CTR ad creative."
+description: "Amazon visual suite generation for cross-border ecommerce. Use when Codex needs to create a complete Amazon image set from product photos, selling points, listings, competitor links, or reference visuals: 1 square main image, 6 square secondary images, 7 desktop A+ modules, and 7 mobile A+ modules. Trigger on requests such as 星河亚马逊主副图A+4.0, 星河亚马逊主副图A+, 亚马逊整套图片, 主图副图A+一次性生成, Amazon main images, secondary images, A+ modules, listing image suite, or cross-border Amazon visual workflow."
 ---
 
-# Xinghe Amazon Visual Suite
+# 星河亚马逊主副图A+4.0
 
 Create a complete Amazon visual image suite in one run: product analysis, selling-point strategy, layout planning, prompts, generation, deterministic size export, QA, and delivery.
 
 Default output count is fixed unless the user explicitly asks otherwise:
 
 - 1 main image, square 1:1.
-- 6 secondary images, vertical 3:4.
+- 6 secondary images, square 1000x1000.
 - 7 desktop A+ modules, final 1464x600.
 - 7 mobile A+ modules, final 1600x1200.
 
@@ -27,9 +27,11 @@ Hard count rule: the default deliverable is exactly 21 final images. Do not rein
 7. Build a complete `Product Master Description` and reuse it in every generated visual prompt.
 8. Generate every final visual as a separate image. Do not use a collage as a substitute for an individual final image.
 9. Prefer the Xinghe deployment helper or fixed API route when available. If unavailable or failed, use built-in `image_gen` as the final fallback.
-10. Use `scripts/visual_size_helper.py` only for deterministic resize, crop, padding, format conversion, and dimension checks.
-11. Use `scripts/make_contact_sheet.py` only to create a review overview from finished images.
-12. Treat fewer than 21 final images as incomplete execution unless the user explicitly requested fewer images. Report incomplete execution and continue generating the missing groups rather than stopping at 6 A+ modules.
+10. When passing product or reference images to a PowerShell helper, follow `references/generation-backend.md`: pass one semicolon-joined string to `-ReferenceImage`, never a PowerShell array or comma-separated path list.
+11. For multi-image helper generation, follow `references/generation-backend.md`: prefer 3-second staggered background submission, then automatically fall back to serial generation if background jobs fail.
+12. Use `scripts/visual_size_helper.py` only for deterministic resize, crop, padding, format conversion, and dimension checks.
+13. Use `scripts/make_contact_sheet.py` only to create a review overview from finished images.
+14. Treat fewer than 21 final images as incomplete execution unless the user explicitly requested fewer images. Report incomplete execution and continue generating the missing groups rather than stopping at 6 A+ modules.
 
 ## Inputs
 

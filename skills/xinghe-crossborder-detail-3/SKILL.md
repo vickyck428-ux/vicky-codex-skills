@@ -1,9 +1,9 @@
 ---
 name: xinghe-crossborder-detail-3
-description: Create cross-border PDP, detail-page, or selected A+ modules from product evidence and platform requirements. Use for 详情页、PDP、长图或模块化 A+；do not use for a complete Amazon 21-image suite, one white-background main image, reference-image product replacement, or a single CTR ad creative.
+description: Cross-border ecommerce detail page image generation skill. Use when Codex needs to turn product photos, selling points, reference detail pages, competitor visuals, or platform requirements into finished cross-border PDP images, Amazon A+ modules, Shopify product modules, Temu/AliExpress selling images, TikTok Shop modules, or Ozon/Wildberries vertical Russian marketplace images. Supports buyer-demand-led planning, user-specified aspect ratios such as 900x1200, information confidence, page task tables, reference visual style adaptation, platform-specific page rhythm, product-consistency and physical-logic locks, Xinghe fixed API/deployment-helper-first generation, and built-in image_gen final fallback.
 ---
 
-# 星河跨境电商详情3.0
+# 星河跨境电商详情4.0
 
 Generate finished cross-border ecommerce detail page images from product photos. Do not stop at strategy or prompts unless the user explicitly asks for prompts only. The default workflow is:
 
@@ -35,6 +35,7 @@ Direct-generation boundary: every delivered module image must be generated direc
 - Always attempt the Xinghe deployment helper or fixed API route first for final image generation.
 - Read `references/fallback-generation.md` before generation to resolve the deployment helper, route, scripts, and API configuration.
 - Use the deployment helper first. If the helper is missing, use bundled fixed-interface scripts when configured.
+- When generating multiple final images through the deployment helper, use the staggered concurrent helper-call rule in `references/fallback-generation.md`: submit one job, wait 3 seconds, submit the next job without waiting for file output, then wait for all jobs after submission.
 - Use built-in `image_gen` only as the final fallback when the deployment helper and bundled fixed-interface scripts are unavailable, fail, or cannot save/display the result.
 
 ## Non-Negotiables
@@ -67,7 +68,7 @@ When the user provides product photos and asks for detail pages, A+ modules, PDP
 10. Read `references/scene-layout-standard.md`, `references/style-system-standard.md`, `references/design-strength-system.md`, `references/visual-quality-rules.md`, and `references/product-consistency-physics.md`. Create `Scene Layout Plan`, `Style System Lock`, `Visual Quality Lock`, `Design Strength Lock`, and `Product Identity & Physics Lock`.
 11. Read `references/anti-template-check.md` and revise the page plan before generation if the set collapses into a repeated template.
 12. Read `references/prompt-contract.md` or `references/prompt-templates.md` to assemble standalone prompts. Include the same locks and each module's planning fields in every prompt.
-13. Read `references/fallback-generation.md` and generate through the Xinghe deployment helper or fixed API route first, one module per call. Use built-in `image_gen` only as the final fallback when the helper and bundled scripts are unavailable or fail.
+13. Read `references/fallback-generation.md` and generate through the Xinghe deployment helper or fixed API route first, one module per call. For multiple helper calls, submit jobs with the 3-second staggered concurrent rule before waiting for all outputs. Use built-in `image_gen` only as the final fallback when the helper and bundled scripts are unavailable or fail.
 14. Deliver generation method, save directory, numbered image list, each image purpose, QA notes, and final kept count.
 
 ## Product Image Analysis
@@ -187,7 +188,7 @@ Prefer the Xinghe deployment helper or fixed API route:
 - Read `references/fallback-generation.md` before generation.
 - Use the deployment image helper first.
 - If the helper is missing, use `scripts/generate_image.py` for one image or `scripts/generate_batch.py` for a set when API configuration exists.
-- Generate one module per call.
+- Generate one module per call. For multiple helper calls, submit them with the 3-second staggered concurrent rule before waiting for all outputs.
 - Keep the same ratio and style system across all images.
 - Use the requested size when the user specifies one; otherwise use `--size 16:9 --resolution 2k`.
 - Read API keys from `.env` or environment variables only. Never write real keys into skill files.

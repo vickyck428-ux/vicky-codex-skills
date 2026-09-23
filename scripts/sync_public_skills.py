@@ -37,8 +37,8 @@ def load_manifest() -> tuple[list[str], set[str]]:
     primary = data["primary_skills"]
     compatibility = set(data["compatibility_skills"])
     names = primary + data["compatibility_skills"]
-    if len(primary) != 44 or len(compatibility) != 2 or len(set(names)) != 46:
-        raise RuntimeError("manifest must contain 44 unique primary and 2 unique compatibility skills")
+    if len(primary) != 47 or len(compatibility) != 2 or len(set(names)) != 49:
+        raise RuntimeError("manifest must contain 47 unique primary and 2 unique compatibility skills")
     if any(not NAME_RE.fullmatch(name) for name in names):
         raise RuntimeError("manifest contains an invalid skill name")
     return names, compatibility
@@ -127,7 +127,7 @@ def main() -> int:
             "mode": "apply" if args.apply else "dry-run",
             "source_root": str(source_root),
             "skills": len(names),
-            "primary": 44,
+            "primary": 47,
             "compatibility": 2,
             "changed": changed,
         }, ensure_ascii=False, indent=2))

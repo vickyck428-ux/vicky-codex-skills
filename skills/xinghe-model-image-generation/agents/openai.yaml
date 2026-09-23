@@ -1,0 +1,7 @@
+interface:
+  display_name: "星河模特图生成4.0"
+  short_description: "按品类生成纯白背景中国阳光感统一模特图"
+  default_prompt: "Use $xinghe-model-image-generation to generate 8 category-adapted square pure-white ecommerce model images from uploaded product photos, using the first image as the model identity reference, with an adult Chinese model and a sunny, positive, approachable natural facial expression."
+
+policy:
+  allow_implicit_invocation: true

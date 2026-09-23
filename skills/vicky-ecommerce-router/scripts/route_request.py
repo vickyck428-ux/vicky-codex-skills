@@ -50,7 +50,10 @@ def route(raw: str) -> Route:
 
     if has_any(text, ("参考视频", "视频复刻", "拆解复刻", "爆款视频二创")):
         return Route("ROUTED", "xinghe-viral-video-remix-2-0", "参考视频拆解复刻")
-    if has_any(text, ("真人", "手模", "口播", "产品演示", "带货视频", "ugc", "转化型")):
+    if has_any(text, ("带货视频", "口播", "ugc", "转化型视频", "产品演示视频")) or (
+        has_any(text, ("真人", "手模", "产品演示", "转化型"))
+        and has_any(text, ("视频", "短片", "口播", "ugc"))
+    ):
         return Route("ROUTED", "xinghe-ecommerce-selling-video-2-0", "带货演示或转化内容")
     if has_any(text, ("15秒", "15 秒", "精品宣传片", "电影感", "无叠字")) and has_any(text, ("视频", "宣传片", "主图")):
         return Route("ROUTED", "xinghe-main-video-promo-2-0", "15 秒精品主图宣传片")
@@ -61,11 +64,17 @@ def route(raw: str) -> Route:
         return Route("ROUTED", "xinghe-reference-image-remix-3", "参考图加自有产品图二创")
     if has_any(text, ("完整21图", "完整 21 图", "主图副图a+", "主图、副图和a+", "整套amazon", "整套 amazon")):
         return Route("ROUTED", "xinghe-amazon-visual-suite", "完整 Amazon 视觉套系")
+    if has_any(text, ("场景图", "生活场景图", "使用场景图", "产品场景图")):
+        return Route("ROUTED", "xinghe-scene-image-generator", "产品生活或使用场景图")
+    if has_any(text, ("模特图", "上身图", "手持图", "试穿图", "佩戴图", "白底模特", "换模特")):
+        return Route("ROUTED", "xinghe-model-image-generation", "白底真人模特产品图")
+    if has_any(text, ("淘宝详情", "天猫详情", "京东详情", "拼多多详情", "国内电商详情", "电商详情图")):
+        return Route("ROUTED", "xinghe-ecommerce-detail", "国内电商详情页或详情图")
     if has_any(text, ("pdp", "详情页", "a+模块", "a+ 模块", "详情模块")):
-        return Route("ROUTED", "xinghe-crossborder-detail-3", "详情页或模块化内容")
+        return Route("ROUTED", "xinghe-crossborder-detail-3", "跨境详情页或模块化内容")
     if has_any(text, ("高点击", "广告图", "信息流", "带文案", "创意图")):
         return Route("ROUTED", "xinghe-ecommerce-creative-image", "单张 CTR 营销创意图")
-    if has_any(text, ("白底主图", "换背景", "换模特", "换颜色", "产品编辑", "amazon主图", "amazon 主图")):
+    if has_any(text, ("白底主图", "换背景", "换颜色", "产品编辑", "amazon主图", "amazon 主图")):
         return Route("ROUTED", "xinghe-wanneng-shengtu-3-0", "普通商品图编辑或单张主图")
 
     if has_any(text, ("shipment id", "t1批准", "t1 已批准", "采购到货", "实测", "装箱", "箱号")):

@@ -51,7 +51,7 @@ writeFileSync(promptFile, prompt, "utf8");
 
 const args = ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", helper, "-PromptFile", promptFile, "-OutputDir", outputDir, "-Size", size, "-FileName", fileName];
 if (images.length > 0) {
-  args.push("-ReferenceImage", ...images);
+  args.push("-ReferenceImage", images.join(";"));
 }
 
 const result = spawnSync("powershell.exe", args, { stdio: "inherit", windowsHide: true });

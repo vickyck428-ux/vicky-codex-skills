@@ -1,9 +1,9 @@
 ---
 name: xinghe-wanneng-shengtu-3-0
-description: Generate or edit one high-fidelity ecommerce product image from uploaded product photos. Use for plain Amazon主图、白底图、换背景、换模特、换颜色、试穿或普通产品编辑；do not use when both a reference image and product image are supplied for remix, for a complete Amazon suite, detail-page modules, or copy-led CTR advertising.
+description: Directly generate high-fidelity all-category ecommerce product images from uploaded product photos. Use when users ask for 商品主图, 电商主图, 淘宝/天猫/Amazon/TikTok Shop product images, 场景图, 白底图, 模特图, 换模特, 模特换装, 试穿, 换背景, 换场景, 换颜色, 详情图, 广告图, or product-image SOPs. Default behavior is to call image generation directly, not to stop at prompts, unless the user explicitly requests prompts/SOP only.
 ---
 
-# 星河万能生图3.0
+# 星河万能生图4.0
 
 ## Core Mandate
 
@@ -90,12 +90,14 @@ $env:XINGHE_IMAGE_GENERATOR
 
 接口规则：
 
-- 有产品图、参考图、竞品图等参考图片时，调用 helper 并通过 `-ReferenceImage` 传入所有参考图片；helper 会路由到 `https://xinghe.xin/v1/images/edits`。
+- 有产品图、参考图、竞品图等参考图片时，调用 helper，并通过一个分号分隔字符串传给 `-ReferenceImage`；helper 会路由到 `https://xinghe.xin/v1/images/edits`。
 - 没有参考图片、纯文本起图时，不传 `-ReferenceImage`；helper 会路由到 `https://xinghe.xin/v1/images/generations`。
 - 模型固定使用部署工具配置的 `gpt-image-2`。
 - API Key 使用部署工具安装时校验并写入的 key，不向用户询问，不在回复中输出、保存或复述真实 key。
 - 完整生图提示词必须先写入 UTF-8 prompt 文件，再用 `-PromptFile` 调用；不要把长提示词直接拼到命令行。
+- 多张参考图必须先合并成一个分号分隔字符串传给 `-ReferenceImage`；不要把 PowerShell 数组或多个逗号分隔路径直接传给 `-ReferenceImage`，避免后续参数被错绑成 `TimeoutSec` 等参数。
 - 每张图单独调用一次 helper，保存到本地输出目录。
+- 当需要生成多张图时，使用错峰并发提交：第 1 张 helper 调用提交后等待 3 秒，不等图片落盘，立即提交第 2 张；依次类推。所有任务提交后再统一等待完成并检查输出。单张图保持普通同步调用。
 - helper 会输出本地绝对路径和 Markdown 图片预览；最终回复必须使用本地绝对路径展示图片。
 
 PowerShell 示例：
@@ -104,14 +106,59 @@ PowerShell 示例：
 $helper = $env:XINGHE_IMAGE_GENERATOR
 if (-not $helper) { $helper = Join-Path $env:LOCALAPPDATA 'ApiCodexOneClick\tools\generate-image.ps1' }
 $promptFile = "<absolute prompt file path>"
+$referenceImages = @("C:\path\to\product.png", "C:\path\to\reference.png")
+$referenceImageArg = ($referenceImages -join ';')
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File $helper `
   -PromptFile $promptFile `
-  -ReferenceImage "C:\path\to\product.png", "C:\path\to\reference.png" `
+  -ReferenceImage $referenceImageArg `
   -OutputDir "<absolute output directory>" `
   -Size "1024x1024" `
   -FileName "image-01.png"
 ```
 
 无参考图时删除 `-ReferenceImage ...` 参数。
+
+多张图并发提交示例：
+
+```powershell
+$serialFallback = $false
+$jobs = @()
+try {
+  foreach ($task in $imageTasks) {
+    $jobs += Start-Job -ScriptBlock {
+      param($helper, $promptFile, $referenceImageArg, $outputDir, $size, $fileName)
+      if ($referenceImageArg) {
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $helper -PromptFile $promptFile -ReferenceImage $referenceImageArg -OutputDir $outputDir -Size $size -FileName $fileName
+      } else {
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $helper -PromptFile $promptFile -OutputDir $outputDir -Size $size -FileName $fileName
+      }
+    } -ArgumentList $helper, $task.PromptFile, $task.ReferenceImageArg, $task.OutputDir, $task.Size, $task.FileName
+    Start-Sleep -Seconds 3
+  }
+  $jobs | Wait-Job | Out-Null
+  $results = $jobs | Receive-Job -ErrorAction Stop
+} catch {
+  $serialFallback = $true
+} finally {
+  if ($jobs.Count -gt 0) {
+    if ($serialFallback) { $jobs | Stop-Job -ErrorAction SilentlyContinue }
+    $jobs | Remove-Job -Force -ErrorAction SilentlyContinue
+  }
+}
+if ($serialFallback) {
+  $results = @()
+  foreach ($task in $imageTasks) {
+    $outPath = Join-Path $task.OutputDir $task.FileName
+    if (Test-Path -LiteralPath $outPath) { continue }
+    if ($task.ReferenceImageArg) {
+      $results += & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $helper -PromptFile $task.PromptFile -ReferenceImage $task.ReferenceImageArg -OutputDir $task.OutputDir -Size $task.Size -FileName $task.FileName
+    } else {
+      $results += & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $helper -PromptFile $task.PromptFile -OutputDir $task.OutputDir -Size $task.Size -FileName $task.FileName
+    }
+  }
+}
+```
+
+并发提交时，每张图必须使用独立的 prompt 文件、输出文件名和输出路径记录；不要在提交下一张前等待上一张落盘。若并发调用失败或接口限流，再降级为逐张串行重试。
 
 如果 helper 不存在或执行失败，不要改用 Pillow、matplotlib、SVG、canvas 或占位图。只有当前会话明确暴露可用的内置 `image_gen` 时，才把它作为最后兜底；否则报告 helper 缺失或执行失败。

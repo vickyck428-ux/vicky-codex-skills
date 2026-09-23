@@ -39,8 +39,8 @@ def main() -> int:
     expected = primary + compatibility
     actual = sorted(path.name for path in (ROOT / "skills").iterdir() if path.is_dir())
     errors: list[str] = []
-    if len(primary) != 44 or len(compatibility) != 2 or len(set(expected)) != 46:
-        errors.append("manifest count must be 44 primary + 2 compatibility")
+    if len(primary) != 47 or len(compatibility) != 2 or len(set(expected)) != 49:
+        errors.append("manifest count must be 47 primary + 2 compatibility")
     if sorted(expected) != actual:
         errors.append("skills directory does not match manifest")
     if (ROOT / "LICENSE").exists() or (ROOT / "LICENSE.md").exists():

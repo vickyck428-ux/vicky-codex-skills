@@ -40,15 +40,71 @@ Use this for each module when a product/reference image exists:
 $helper = $env:XINGHE_IMAGE_GENERATOR
 if (-not $helper) { $helper = Join-Path $env:LOCALAPPDATA 'ApiCodexOneClick\tools\generate-image.ps1' }
 $promptFile = "<absolute prompt file path>"
+$referenceImages = @("C:\path\to\product.png")
+$referenceImageArg = ($referenceImages -join ';')
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File $helper `
   -PromptFile $promptFile `
-  -ReferenceImage "C:\path\to\product.png" `
+  -ReferenceImage $referenceImageArg `
   -OutputDir "<absolute output directory>" `
   -Size "<requested size, e.g. 900x1200 or 1536x864>" `
   -FileName "module-01.png"
 ```
 
-For text-only generation, remove `-ReferenceImage`.
+For text-only generation, remove `-ReferenceImage`. When multiple product/reference images exist, keep one `-ReferenceImage` argument only and pass a semicolon-joined string such as `$referenceImageArg`; do not pass a PowerShell array or comma-separated multiple paths directly.
+
+## Staggered Concurrent Helper Calls
+
+When generating multiple modules through the deployment helper, prefer staggered concurrency and automatically fall back to serial generation if background jobs fail:
+
+- Submit module 01 as a background job.
+- Wait 3 seconds.
+- Submit module 02 without waiting for module 01 to finish or land on disk.
+- Continue until every module is submitted.
+- After submission, wait for all jobs, collect helper output, and verify saved files.
+- If `Start-Job`, `Wait-Job`, or `Receive-Job` fails on the customer's computer, stop and clean up background jobs, then retry missing outputs one by one with the same helper arguments.
+
+Each module must have its own prompt file, output filename, and module-specific prompt. If reference images are used, pass one semicolon-joined `ReferenceImageArg` string to `-ReferenceImage`.
+
+```powershell
+$serialFallback = $false
+$jobs = @()
+try {
+  foreach ($task in $imageTasks) {
+    $jobs += Start-Job -ScriptBlock {
+      param($helper, $promptFile, $referenceImageArg, $outputDir, $size, $fileName)
+      if ($referenceImageArg) {
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $helper -PromptFile $promptFile -ReferenceImage $referenceImageArg -OutputDir $outputDir -Size $size -FileName $fileName
+      } else {
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $helper -PromptFile $promptFile -OutputDir $outputDir -Size $size -FileName $fileName
+      }
+    } -ArgumentList $helper, $task.PromptFile, $task.ReferenceImageArg, $task.OutputDir, $task.Size, $task.FileName
+    Start-Sleep -Seconds 3
+  }
+  $jobs | Wait-Job | Out-Null
+  $results = $jobs | Receive-Job -ErrorAction Stop
+} catch {
+  $serialFallback = $true
+} finally {
+  if ($jobs.Count -gt 0) {
+    if ($serialFallback) { $jobs | Stop-Job -ErrorAction SilentlyContinue }
+    $jobs | Remove-Job -Force -ErrorAction SilentlyContinue
+  }
+}
+if ($serialFallback) {
+  $results = @()
+  foreach ($task in $imageTasks) {
+    $outPath = Join-Path $task.OutputDir $task.FileName
+    if (Test-Path -LiteralPath $outPath) { continue }
+    if ($task.ReferenceImageArg) {
+      $results += & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $helper -PromptFile $task.PromptFile -ReferenceImage $task.ReferenceImageArg -OutputDir $task.OutputDir -Size $task.Size -FileName $task.FileName
+    } else {
+      $results += & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $helper -PromptFile $task.PromptFile -OutputDir $task.OutputDir -Size $task.Size -FileName $task.FileName
+    }
+  }
+}
+```
+
+For a single module, use the normal synchronous helper call.
 
 ## Bundled Script Commands
 

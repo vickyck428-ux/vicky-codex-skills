@@ -1,5 +1,5 @@
 interface:
-  display_name: "星河创意图3.0"
+  display_name: "星河创意图4.0"
   short_description: "点击率优先，默认直接出图的电商主图与广告创意图技能"
   default_prompt: "Use $xinghe-ecommerce-creative-image to generate one CTR-first ecommerce creative image from my product photo."
 policy:

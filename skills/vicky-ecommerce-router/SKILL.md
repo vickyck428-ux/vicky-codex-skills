@@ -20,7 +20,7 @@ description: Route ambiguous Amazon selection, Xinghe image/video, and Walmart W
 - 1688 全链路、恢复、迁移或状态核对优先于普通 Amazon 选品。
 - 年度目标、每日监督或方法轮换优先于单次女包选品。
 - Sorftime 或“十个跨平台方向”只进入 `$xinghe-crossborder-product-selection`。
-- 图片以用户交付物为准：参考图二创、完整 Amazon 套系、详情模块、单张营销创意、普通商品编辑互斥。
+- 图片以用户交付物为准：参考图二创、完整 Amazon 套系、场景图、模特图、国内电商详情、跨境详情模块、单张营销创意、普通商品编辑互斥。
 - 视频以输入和成片目标为准：参考视频复刻、带货演示、15 秒精品宣传片互斥。
 - WFS 按售前候选、共享池、已出单动作、T1/采购/到仓/装箱/Shipment ID、Listing 工作簿依次识别。
 

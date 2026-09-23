@@ -1,6 +1,6 @@
 ---
 name: xinghe-crossborder-product-selection
-description: "Use Sorftime data to produce up to 10 cross-border product directions and competitor links from an explicit platform, region, and category or keyword. Use for Sorftime、跨平台十个方向或十个建议产品；do not use for ordinary Amazon selection, one-off refined-handbag orchestration, or 1688 operational closure."
+description: "星河跨境电商选品自动化。Use when Codex needs to output 10 recommended cross-border ecommerce product directions with competitor links from a user-provided platform, region, and category or product keyword, using Sorftime MCP data. Supports Amazon, TikTok Shop, Shopee, Walmart, Temu, and 1688. Trigger for 跨境选品, 多平台选品, 类目选品, 产品关键词选品, 10个建议产品, 对标竞品链接, 货源机会, Amazon/TikTok/Shopee/Walmart/Temu/1688 product research."
 ---
 
 # 星河跨境电商选品自动化

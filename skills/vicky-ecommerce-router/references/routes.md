@@ -13,9 +13,12 @@
 
 - 参考图和自己的产品图：`xinghe-reference-image-remix-3`
 - 完整 Amazon 主图、副图、A+ 套系：`xinghe-amazon-visual-suite`
-- PDP、详情页或 A+ 模块：`xinghe-crossborder-detail-3`
+- 产品生活/使用场景图：`xinghe-scene-image-generator`
+- 白底真人模特、上身、手持、试穿或佩戴图：`xinghe-model-image-generation`
+- 淘宝、天猫、京东、拼多多等国内电商详情：`xinghe-ecommerce-detail`
+- 跨境 PDP、Amazon A+、Shopify、Temu、AliExpress 等详情模块：`xinghe-crossborder-detail-3`
 - 单张高点击广告图或带文案创意图：`xinghe-ecommerce-creative-image`
-- 白底主图、换背景、换模特、换颜色和普通产品编辑：`xinghe-wanneng-shengtu-3-0`
+- 白底主图、换背景、换颜色和普通产品编辑：`xinghe-wanneng-shengtu-3-0`
 
 ## 星河视频
 

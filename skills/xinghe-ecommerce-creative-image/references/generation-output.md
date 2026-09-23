@@ -37,7 +37,7 @@ Avoid: fake logo, watermark, fake certification, fake reviews, fake sales data, 
 - 第 4 张：人群推荐型。
 - 第 5 张：细节卖点型。
 
-每张单独调用一次部署工具 helper；只有 helper 不存在或执行失败时，才每张单独调用一次内置 `image_gen` 兜底。不要一次混成拼图，除非用户明确要求拼图。
+每张单独调用一次部署工具 helper；需要生成多张时，按并发版规则错峰提交：第 1 张提交后等待 3 秒，不等落盘即提交第 2 张，所有任务提交后再统一等待和检查输出。只有 helper 不存在或执行失败时，才每张单独调用一次内置 `image_gen` 兜底。不要一次混成拼图，除非用户明确要求拼图。
 
 ## Prompt-Only Exception
 

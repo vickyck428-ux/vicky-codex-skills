@@ -12,7 +12,7 @@ from PIL import Image, ImageOps
 
 SPECS = {
     "main": (2000, 2000),
-    "secondary": (1200, 1600),
+    "secondary": (1000, 1000),
     "aplus_desktop": (1464, 600),
     "aplus_mobile": (1600, 1200),
 }
@@ -23,7 +23,7 @@ def parse_size(value: str) -> Tuple[int, int]:
         width, height = value.lower().split("x", 1)
         return int(width), int(height)
     except Exception as exc:  # noqa: BLE001
-        raise argparse.ArgumentTypeError("Size must look like 1200x1600") from exc
+        raise argparse.ArgumentTypeError("Size must look like 1000x1000") from exc
 
 
 def open_image(path: Path) -> Image.Image:

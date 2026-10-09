@@ -1,0 +1,6 @@
+interface:
+  display_name: "Walmart缺货退款文案"
+  short_description: "生成Walmart缺货订单的邮件和短信退款文案"
+  default_prompt: "Use $walmart-out-of-stock-copy to generate tactful Walmart out-of-stock email and SMS copy. Provide copy only; do not send messages or modify orders."
+policy:
+  allow_implicit_invocation: true

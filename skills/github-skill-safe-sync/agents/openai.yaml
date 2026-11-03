@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Skill 安全同步"
+  short_description: "安全同步 Vicky 与老陈仓库的全部 Skill"
+  default_prompt: "使用 $github-skill-safe-sync 检查两个 GitHub 仓库并安全同步全部 Skill。"

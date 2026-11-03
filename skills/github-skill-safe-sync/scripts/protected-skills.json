@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "protected_skills": {
+    "walmart-out-of-stock-copy": {
+      "mode": "hold-local",
+      "reason": "User-confirmed local customizations; do not replace during routine sync."
+    },
+    "github-skill-safe-sync": {
+      "mode": "hold-local",
+      "reason": "User-confirmed local customizations; do not replace during routine sync."
+    }
+  }
+}
